@@ -1,0 +1,12 @@
+<app-toolbar *ngIf="isLogin"></app-toolbar>
+<mat-sidenav-container autosize>
+    <mat-sidenav #sidenav fixedInViewport="true" mode="side" opened="{{ isExpanded }}">
+        <side-nav (toggleMenu)="toggleMenu()" [isExpanded]="isExpanded"></side-nav>
+    </mat-sidenav>
+
+    <mat-sidenav-content [style.margin-left.px]="isLogin&&isExpanded ? 250 : 0">
+        <div class="content-container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

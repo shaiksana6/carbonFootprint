@@ -1,0 +1,118 @@
+<div class="card-container">
+    <span style="margin-right: 50%;font-size: 22px;">View team</span>
+    <!-- app.component.html -->
+</div>
+
+<!-- <div class="table-container">
+    <div class="header">
+        <button (click)="exportToExcel()" class="action-button">Download</button>
+        <button (click)="openBulkUploadPopup()" class="action-button">Bulk Upload</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Team Name</th>
+                <th>Users</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let team of teams">
+                <td>{{ team.name }}</td>
+                <td>{{ team.users }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div *ngIf="showBulkUploadPopup" class="bulk-upload-popup">
+        <h2>Bulk Upload</h2>
+        <p>Select a file to upload or <a href="#">download sample</a>.</p>
+        <input type="file" (change)="handleFileInput($event)">
+        <button (click)="uploadBulkData()">Upload</button>
+        <button (click)="closeBulkUploadPopup()">Close</button>
+    </div>
+</div> -->
+
+<!-- app.component.html -->
+<div class="table-container">
+    <div class="header">
+        <button mat-button (click)="exportToExcel()" class="action-button">
+            Download <mat-icon>download</mat-icon>
+        </button>
+        <button mat-button (click)="openBulkUploadPopup()" class="action-button">
+            Bulk Upload <mat-icon>cloud_upload</mat-icon>
+        </button>
+    </div>
+
+    <!-- <table>
+        <thead>
+            <tr>
+                <th>Team Name</th>
+                <th>Users</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let team of teams">
+                <td>{{ team.name }}</td>
+                <td>{{ team.users }}</td>
+            </tr>
+        </tbody>
+    </table> -->
+
+    <!-- project-table.component.html -->
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!-- Project Code Column -->
+            <ng-container matColumnDef="projectCode">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Project Code <mat-icon style="vertical-align: middle;">filter_list</mat-icon>
+                </th>
+                <td mat-cell *matCellDef="let project"> {{ project.projectCode }} </td>
+            </ng-container>
+            <!-- Team Name Column
+            <ng-container matColumnDef="teamName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Team Name <mat-icon style="vertical-align: middle;">filter_list</mat-icon>
+                </th>
+                <td mat-cell *matCellDef="let project"> {{ project.teamName }} </td>
+            </ng-container> -->
+
+            <!-- Team Member name Column -->
+            <ng-container matColumnDef="teamMemberName">
+                <th mat-header-cell *matHeaderCellDef> Team Member Name </th>
+                <td mat-cell *matCellDef="let project"> {{ project.teamMemberName }} </td>
+            </ng-container>
+
+            <!--  Assignation Start Date Column -->
+            <ng-container matColumnDef="assignationStartDate">
+                <th mat-header-cell *matHeaderCellDef>Assignation Start Date </th>
+                <td mat-cell *matCellDef="let project"> {{project.assignationStartDate}} </td>
+            </ng-container>
+
+            <!-- Assignation End Date Column -->
+            <ng-container matColumnDef="assignationEndDate">
+                <th mat-header-cell *matHeaderCellDef>Assignation End Date </th>
+                <td mat-cell *matCellDef="let project"> {{ project.assignationEndDate }} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <!-- <mat-paginator showFirstLastButtons pageSize="10"></mat-paginator> -->
+    </div>
+
+</div>
+
+<!-- Bulk Upload Dialog -->
+<mat-dialog-container *ngIf="showBulkUploadPopup">
+    <h2 mat-dialog-title>Bulk Upload</h2>
+    <mat-dialog-content>
+        <p>Select a file to upload </p>
+        <input type="file" (change)="handleFileInput($event)">
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button (click)="uploadBulkData()">Upload</button>
+        <button mat-button (click)="closeBulkUploadPopup()">Close</button>
+    </mat-dialog-actions>
+</mat-dialog-container>

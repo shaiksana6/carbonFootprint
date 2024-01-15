@@ -1,0 +1,69 @@
+<form [formGroup]="loginForm" (ngSubmit)="onLoginClick()">
+  <div class="container">
+    <div class="item">
+      <!-- <img src="https://cached.imagescaler.hbpl.co.uk/resize/scaleWidth/952/cached.offlinehbpl.hbpl.co.uk/news/SUC/20220927102358_hcltech-copy-CUS.jpg" alt="Blue Leaf Icon" class="blue-leaf-icon"> -->
+      <h1 class="header">
+        <!-- <img src="../../assets/H-Logo-Lite.jpeg" alt="Banner Icon" class="banner-logo"> -->
+        
+        <div class="text-container">
+          <div class="text">CARBON</div>
+          <div class="footprint">FOOTPRINT</div>
+        </div>
+      </h1>
+      <!-- <div>
+        <input type="radio" name="usertype" value="user" formControlName="usertype" /><span
+          style="padding-right: 60px;">User</span>
+        <input type="radio" name="usertype" value="Administrator" formControlName="usertype" />Administrator
+        <div *ngIf="loginForm.get('usertype')?.hasError('required') && loginForm.get('usertype')?.touched"
+          class="text-danger">
+          Please select valid user type.
+        </div>
+      </div> -->
+
+      <div>
+        <p [ngClass]="{'label-error': !loginForm.get('username')?.valid && loginForm.get('username')?.touched}">User
+          Name</p>
+        <input type="text" placeholder="User Name" formControlName="username"
+          [ngClass]="{'error-border': !loginForm.get('username')?.valid && loginForm.get('username')?.touched}" />
+        <div
+          *ngIf="(loginForm.get('username')?.hasError('required') || loginForm.get('username')?.hasError('invalidEmail')) && loginForm.get('username')?.touched"
+          class="text-danger">
+          Please enter the valid email.
+        </div>
+        <!-- <div *ngIf="loginForm.get('username')?.hasError('invalidEmail') && loginForm.get('username')?.touched"
+          class="text-danger">
+          Invalid email format.
+        </div> -->
+      </div>
+      <div>
+        <div class="password-container">
+          <p [ngClass]="{'label-error': !loginForm.get('password')?.valid && loginForm.get('password')?.touched}">
+            Password</p>
+          <input [type]="showPassword?'text':'password'" placeholder="Password"
+            [ngClass]="{'error-border': !loginForm.get('password')?.valid && loginForm.get('password')?.touched}"
+            formControlName="password" class="password-input" />
+          <span class="eye-icon" (click)="togglePasswordVisibility()">
+            {{ showPassword ? '👁️' : '👁️‍🗨️' }}
+          </span>
+        </div>
+        <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched"
+          class="text-danger">
+          Please enter the valid password.
+        </div>
+        <div *ngIf="loginForm.get('password')?.hasError('apiError') && loginForm.get('password')?.touched"
+          class="text-danger">
+          Your account or password is incorrect.
+          <!-- If you don't remember your password,. <a class="reset-now-link"
+            [routerLink]="'/forgot-password'">Reset it now.</a> -->
+        </div>
+
+      </div>
+      <div>
+        <input type="submit" value="Login" />
+      </div>
+      <!-- <div class="forgot-password-container">
+        <a [routerLink]="'/reset-password'" class="forgot-password-link">Reset Password</a>
+      </div> -->
+    </div>
+  </div>
+</form>

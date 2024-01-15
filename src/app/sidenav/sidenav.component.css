@@ -1,0 +1,103 @@
+.sidenav {
+    width: 250px;
+    height: 100%;
+    background-color: #0066B3;
+    color: white;
+    overflow: hidden;
+}
+
+.toggle {
+    left: 95%;
+    position: relative;
+}
+
+.toggle mat-icon {
+    color: black;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.toggle:hover {
+    cursor: pointer;
+}
+
+.nav .active-link {
+    background-color: #fafafa;
+    border-left: solid 3px #1976d2;
+}
+
+.nav .hover {
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-property: transform, border, background-color;
+}
+
+.nav mat-list-item a {
+    border: none;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.nav mat-list-item:hover,
+.nav a:hover {
+    cursor: pointer;
+    background-color: #fafafa;
+    border-left: solid 3px #1976d2;
+}
+
+.nav mat-icon {
+    color: #1976d2;
+}
+
+.white-color {
+    color: white;
+}
+
+.mat-list-item {
+    height: 64px;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.menu-icon {
+    margin-right: 16px;
+    vertical-align: bottom;
+    color: white;
+}
+
+.menu-label {
+    font-size: 18px;
+    color: white;
+}
+
+.mat-list-item.active {
+    background-color: white;
+    color: #1976d2;
+    /* Change text color when active for better visibility */
+}
+
+.mat-list-item.active .menu-label {
+    color: #1976d2;
+}
+
+.mat-list-item.active .menu-icon {
+    color: #1976d2 !important;
+}
+
+.header {
+    margin-top: 15px;
+}
+
+.main-logo{
+    width: 200px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo-text{
+    padding: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 20px;
+    margin-bottom: 0px;
+}

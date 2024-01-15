@@ -1,0 +1,19 @@
+.icons-container {
+    margin-left: auto;
+}
+
+/* styles.css or your component's style file */
+.custom-toolbar {
+    background-color: #0066B3;
+    /* Replace with your desired color code */
+    color: white;
+    /* Optional: Set text color */
+}
+
+.logo-text {
+    padding: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 20px;
+    margin-bottom: 0px;
+}

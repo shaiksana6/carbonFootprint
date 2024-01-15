@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Bulk Upload</h2>
+<mat-dialog-content>
+    <p>Select a file to upload.</p>
+    <input type="file" (change)="handleFileInput($event)">
+</mat-dialog-content>
+<mat-dialog-actions class="footer-actions">
+    <button mat-button (click)="uploadBulkData()" color="primary">Upload</button>
+    <button mat-button (click)="closeDialog()">Close</button>
+</mat-dialog-actions>

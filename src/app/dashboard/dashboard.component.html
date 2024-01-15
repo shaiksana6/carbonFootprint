@@ -1,0 +1,168 @@
+<div class="dashboard-content">
+    <div class="card-container">
+        <span style="margin-right: 50%;font-size: 22px;">Dashboard</span>
+
+        <button mat-raised-button class="create-new-team-button background-white" style="margin-right: 2%;" *ngIf="authService.isAdmin">
+            <mat-icon>search</mat-icon> Search
+        </button>
+
+        <button mat-raised-button class="create-new-team-button background-white" *ngIf="authService.isAdmin">
+            <mat-icon class="create-new-team-icon">add</mat-icon> Create New Team
+        </button>
+
+        <button mat-raised-button class="create-new-team-button background-white">
+            <mat-chip style="background-color:transparent ;">
+                <img matChipAvatar
+                    src="https://www.nicepng.com/png/detail/186-1866063_dicks-out-for-harambe-sample-avatar.png"
+                    alt="Photo of a Shiba Inu" />
+                {{authService.isAdmin?'Admin':'User'}}
+            </mat-chip>
+            <!-- <mat-icon class="create-new-team-icon">add</mat-icon> Create New Team -->
+        </button>
+        <!-- <mat-chip>
+            <img matChipAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Photo of a Shiba Inu" />
+            Dog one
+        </mat-chip> -->
+    </div>
+    <br>
+    <hr>
+    <div class="card-container">
+        <span style="margin-right: 50%;font-size: 20px;">Overview</span>
+        <mat-select class="custom-dropdown" placeholder="Select Team" *ngIf="authService.isAdmin">
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+        <mat-select class="custom-dropdown" placeholder="Select User" *ngIf="authService.isAdmin">
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+        <mat-select class="custom-dropdown" placeholder="Severity" *ngIf="authService.isAdmin">
+            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+        <ng-container *ngIf="authService.isAdmin">
+            <input matInput [matDatepicker]="picker" class="date-picker-input" (ngModelChange)="onDateChange($event)"
+                [(ngModel)]="dateValue">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <!-- </mat-form-field> -->
+        </ng-container>
+    </div>
+    <div class="card-container">
+        <!-- First Card -->
+        <mat-card class="card">
+            <div class="icon-text-container">
+                <mat-icon class="timer-icon pink-icon">timer</mat-icon>
+                <div class="card-text-container">
+                    <p class="gray-text">CO2 per day</p>
+                    <p class="value">3 KG</p>
+                </div>
+            </div>
+            <p class="card-status">
+                <mat-icon class="down-arrow">arrow_right_alt</mat-icon>
+                10% Decrease from last month
+            </p>
+        </mat-card>
+
+        <!-- Second Card -->
+        <mat-card class="card">
+            <div class="icon-text-container">
+                <mat-icon class="timer-icon blue-icon">av_timer</mat-icon>
+                <div class="card-text-container">
+                    <p class="gray-text">Energy usage per day</p>
+                    <p class="value">6 Hrs</p>
+                </div>
+            </div>
+            <p class="card-status">
+                <mat-icon class="up-arrow">arrow_right_alt</mat-icon>
+                6% increase from last month
+            </p>
+        </mat-card>
+
+        <!-- Third Card -->
+        <mat-card class="card">
+            <div class="icon-text-container">
+                <mat-icon class="timer-icon gold-icon">cloud_queue</mat-icon>
+                <div class="card-text-container">
+                    <p class="gray-text">CO2% per day</p>
+                    <p class="value">33.33%</p>
+                </div>
+            </div>
+            <p class="card-status">
+                <mat-icon class="up-arrow">arrow_right_alt</mat-icon>
+                2% increase from last month
+            </p>
+        </mat-card>
+    </div>
+
+    <div class="card-container">
+        <div class="width-60">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="Total Hours">
+                    <th mat-header-cell *matHeaderCellDef> Total Hours </th>
+                    <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="Name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="CO2 (Kg)">
+                    <th mat-header-cell *matHeaderCellDef> CO2 (KG) </th>
+                    <td mat-cell *matCellDef="let element"> {{element.co2kg}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="CO2 (%)">
+                    <th mat-header-cell *matHeaderCellDef> CO2 (%) </th>
+                    <td mat-cell *matCellDef="let element">
+                        <mat-chip [ngClass]="{
+                            'green-chip': element.co2Per <= 30,
+                            'orange-chip': element.co2Per > 30 && element.co2Per <= 40,
+                            'red-chip': element.co2Per > 40
+                          }">
+                            {{ element.co2Per }}
+                        </mat-chip>
+
+
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let element">
+                        <mat-icon class="action-icon">remove_red_eye</mat-icon>
+                        <mat-icon class="action-icon">attach_file</mat-icon>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <div class="width-40">
+            <mat-card class="chart-card">
+                <div>
+                    <span style="font-weight: bold;">
+                        Overall Progress
+                    </span>
+                    <mat-select style="float:right ;width:20%" placeholder="Daily">
+                        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                    </mat-select>
+                </div>
+                <br>
+                <br>
+                <div class="icon-text-container">
+                    <app-bar-chart></app-bar-chart>
+                </div>
+            </mat-card>
+        </div>
+
+
+    </div>
+
+</div>
